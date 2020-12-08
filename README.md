@@ -12,15 +12,18 @@ Python bindings to interact with the DJI Ryze Tello Drone.
 
 ### Current Key Bindings
 | Key Binding | Control | Action |
-| :---:   | :----:      | :----: |
-|  `Enter` |take off | take off |
+| :---:   | :----:    | :----: |
+|  `Enter` | take off | take off |
 | `space` | land    |  land |
 |  `w` | increase throttle | ascend |
 | `s` | decrease throttle | descend |
 | `a` | yaw left | rotate counter-clockwise |
 | `d` | yaw right | rotate clockwise |
-| `right arrow` | roll left | move left |
-| `left arrow` | roll right | move right |
+| `<left>` | roll left | move left |
+| `<right>` | roll right | move right |
+| `<up>` | pitch forward | move forward |
+| `<down>` | pitch backward | move backward |
+| `f` | flip | 360&deg; flip |
 
 ## References
 * [https://github.com/dji-sdk/Tello-Python](https://github.com/dji-sdk/Tello-Python)
