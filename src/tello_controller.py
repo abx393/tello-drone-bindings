@@ -10,6 +10,8 @@ import numpy as np
 import threading
 import socket
 import keyboard
+import warnings
+
 import h264decoder
 import cv2
 
@@ -99,7 +101,7 @@ class TelloController:
     
     def command(self):
         if not self.listening:
-            print("Must activate receiver thread (ie., controller.start()) " +
+            warnings.warn("Must activate receiver thread (ie., controller.start()) " +
                                 "before activating 'command' mode.")
         print("command ", end="")
         self.send("command")
@@ -110,26 +112,26 @@ class TelloController:
 
     def takeoff(self):
         if not self.mode == "command":
-            print("Must be in 'command' mode to takeoff.")
+            warnings.warn("Must be in 'command' mode to takeoff.")
         print("takeoff ", end="")
         self.send("takeoff")
         self.airborne = True
 
     def land(self):
         if not self.mode == "command":
-            print("Must be in 'command' mode to land.")
+            warnings.warn("Must be in 'command' mode to land.")
         print("land ", end="")
         self.send("land")
         self.airborne = False
 
     def ascend(self, height):
         if not self.airborne:
-            print("Must takeoff first.")
+            warnings.warn("Must takeoff first.")
         self.send("up " + str(height))
 
     def descend(self, height):
         if not self.airborne:
-            print("Must takeoff first.")
+            warnings.warn("Must takeoff first.")
         self.send("down " + str(height))
 
     def yaw_right(self, angle):
@@ -140,22 +142,22 @@ class TelloController:
 
     def roll_left(self, dist):
         if not self.airborne:
-            print("Must takeoff first.")
+            warnings.warn("Must takeoff first.")
         self.send("left " + str(dist))
 
     def roll_right(self, dist):
         if not self.airborne:
-            print("Must takeoff first.")
+            warnings.warn("Must takeoff first.")
         self.send("right " + str(dist))
 
     def pitch_forward(self, dist):
         if not self.airborne:
-            print("Must takeoff first.")
+            warnings.warn("Must takeoff first.")
         self.send("forward " + str(dist))
 
     def pitch_backward(self, dist):
         if not self.airborne:
-            print("Must takeoff first.")
+            warnings.warn("Must takeoff first.")
         self.send("back " + str(dist))
 
     def flip(self, direction="f"):
