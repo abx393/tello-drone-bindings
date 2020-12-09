@@ -16,13 +16,13 @@ import h264decoder
 import cv2
 
 class TelloController:
-    # Keys associated with each command
+    # Key bindings
     TAKEOFF_KEY = "enter"
     LAND_KEY = "space"
     ASCEND_KEY = "w"
     DESCEND_KEY = "s"
-    ROTATE_CW_KEY = "d" # rotate clockwise key
-    ROTATE_CCW_KEY = "a" # rotate counter-clockwise key
+    ROTATE_CW_KEY = "d"
+    ROTATE_CCW_KEY = "a"
     FORWARD_KEY = "up"
     BACKWARD_KEY = "down"
     LEFT_KEY = "left"
@@ -57,7 +57,7 @@ class TelloController:
         self.mode = "idle"
         self.airborne = False
 
-    def recv(self):
+    def receive_command_socket(self):
         while True:
             try:
                 data, server = self.command_socket.recvfrom(1518)
@@ -79,7 +79,7 @@ class TelloController:
 
         return frames_decoded
 
-    def receive_video(self):
+    def receive_video_socket(self):
         while True:
             try:
                 res_string, ip = self.video_socket.recvfrom(4096)
@@ -96,7 +96,7 @@ class TelloController:
                 break
 
     def send(self, message):
-        self.command_socket.sendto(message.encode("utf-8"),
+        self.command_socket.sendto(message.encode("UTF-8"),
                                   (self.tello_ip, self.tello_command_udp_port))
     
     def command(self):
@@ -207,10 +207,10 @@ class TelloController:
         print("Listening...")
         self.command()
         self.streamon()
-        self.receive_thread = threading.Thread(target=self.recv)
-        self.receive_thread.start()
+        self.receive_command_thread = threading.Thread(target=self.receive_command_socket)
+        self.receive_command_thread.start()
 
-        self.receive_video_thread = threading.Thread(target=self.receive_video)
+        self.receive_video_thread = threading.Thread(target=self.receive_video_socket)
         self.receive_video_thread.start()
 
         self.check_key_input()
