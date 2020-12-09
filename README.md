@@ -1,4 +1,4 @@
-# tello-drone-controls
+# tello-drone-bindings
 Python bindings to interact with the DJI Ryze Tello Drone.
 
 ## Dependencies
@@ -8,10 +8,10 @@ Python bindings to interact with the DJI Ryze Tello Drone.
 
 ## Features
 * Pilot drone with PC using customizable keyboard shortcuts (no joystick or controller necessary)
-* View drone video stream from PC in realtime
+* View video stream of drone POV from PC in realtime.
 
 ### Current Key Bindings
-| Key Binding | Control | Action |
+| Key Binding | Control | Result |
 | :---:   | :----:    | :----: |
 |  `Enter` | take off | take off |
 | `space` | land    |  land |
