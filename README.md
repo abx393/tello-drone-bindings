@@ -6,6 +6,14 @@ Python bindings to interact with the DJI Ryze Tello Drone.
 * opencv-python
 * Python h264decoder
 
+## Instructions
+1. Open a terminal and clone the repository locally.
+  `git clone https://www.github.com/abx393/tello-drone-bindings.git`.
+2. Change your working directory to the src directory of the repository: cd
+   `~/tello-drone-bindings/src`.
+3. ** Windows **: Run `py main.py`.
+   ** Linux **: Run `python main.py`.
+
 ## Features
 * Pilot drone with PC using customizable keyboard shortcuts (no joystick or controller necessary)
 * View video stream of drone POV from PC in realtime.
