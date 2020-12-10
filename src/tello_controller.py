@@ -15,24 +15,9 @@ import warnings
 import h264decoder
 import cv2
 
-class TelloController:
-    # Key bindings
-    TAKEOFF_KEY = "enter"
-    LAND_KEY = "space"
-    ASCEND_KEY = "w"
-    DESCEND_KEY = "s"
-    ROTATE_CW_KEY = "d"
-    ROTATE_CCW_KEY = "a"
-    FORWARD_KEY = "up"
-    BACKWARD_KEY = "down"
-    LEFT_KEY = "left"
-    RIGHT_KEY = "right"
-    FLIP_KEY = "f"
+from key_bindings import check_key_input
 
-    # Sensitivities of different types of commands
-    HORIZONTAL_TRANSLATION_MAGNITUDE = 80
-    ROTATION_MAGNITUDE = 40
-    VERTICAL_TRANSLATION_MAGNITUDE = 100
+class TelloController:
 
     def __init__(self, 
             local_udp_port=3000, 
@@ -163,45 +148,6 @@ class TelloController:
     def flip(self, direction="f"):
         self.send("flip " + direction)
 
-    def check_key_input(self):
-        while True:
-            try:
-                # Throttle controls
-                if keyboard.is_pressed(TelloController.TAKEOFF_KEY):
-                    self.takeoff()
-                if keyboard.is_pressed(TelloController.LAND_KEY):
-                    self.land()
-                if keyboard.is_pressed(TelloController.ASCEND_KEY):
-                    self.ascend(TelloController.VERTICAL_TRANSLATION_MAGNITUDE)
-                if keyboard.is_pressed(TelloController.DESCEND_KEY):
-                    self.descend(TelloController.VERTICAL_TRANSLATION_MAGNITUDE) 
-
-                # Yaw controls
-                if keyboard.is_pressed(TelloController.ROTATE_CW_KEY):
-                    self.yaw_right(TelloController.ROTATION_MAGNITUDE)
-                if keyboard.is_pressed(TelloController.ROTATE_CCW_KEY):
-                    self.yaw_left(TelloController.ROTATION_MAGNITUDE)
-
-                # Roll and pitch controls
-                if keyboard.is_pressed(TelloController.RIGHT_KEY):
-                    self.roll_right(TelloController.HORIZONTAL_TRANSLATION_MAGNITUDE)
-                if keyboard.is_pressed(TelloController.LEFT_KEY):
-                    self.roll_left(TelloController.HORIZONTAL_TRANSLATION_MAGNITUDE)
-                if keyboard.is_pressed(TelloController.FORWARD_KEY):
-                    self.pitch_forward(TelloController.HORIZONTAL_TRANSLATION_MAGNITUDE)
-                if keyboard.is_pressed(TelloController.BACKWARD_KEY):
-                    self.pitch_backward(TelloController.HORIZONTAL_TRANSLATION_MAGNITUDE)
-
-                # Miscellaneous controls
-                if keyboard.is_pressed(TelloController.FLIP_KEY):
-                    self.flip()
-
-            except KeyboardInterrupt:
-                print("Exiting...")
-                self.video_socket.close()
-                self.command_socket.close()
-                break
-
     def start(self):
         self.listening = True
         print("Listening...")
@@ -213,4 +159,22 @@ class TelloController:
         self.receive_video_thread = threading.Thread(target=self.receive_video_socket)
         self.receive_video_thread.start()
 
-        self.check_key_input()
+        while True:
+            try:
+                check_key_input(
+                        self.takeoff, 
+                        self.land, 
+                        self.ascend,
+                        self.descend,
+                        self.yaw_right,
+                        self.yaw_left,
+                        self.roll_right,
+                        self.roll_left,
+                        self.pitch_forward,
+                        self.pitch_backward,
+                        self.flip)
+            except KeyboardInterrupt:
+                print("Exiting...")
+                self.video_socket.close()
+                self.command_socket.close()
+                break
