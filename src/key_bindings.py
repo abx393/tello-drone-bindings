@@ -18,7 +18,7 @@ HORIZONTAL_TRANSLATION_MAGNITUDE = 80
 ROTATION_MAGNITUDE = 40
 VERTICAL_TRANSLATION_MAGNITUDE = 100
 
-def check_key_input(takeoff, 
+def check_key_press(takeoff, 
                     land, 
                     ascend,
                     descend,

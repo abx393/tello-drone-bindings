@@ -15,7 +15,10 @@ import warnings
 import h264decoder
 import cv2
 
-from key_bindings import check_key_input
+from key_bindings import check_key_press
+
+# TODO: improve video quality
+# TODO: test responsiveness of key held down
 
 class TelloController:
 
@@ -161,7 +164,7 @@ class TelloController:
 
         while True:
             try:
-                check_key_input(
+                check_key_press(
                         self.takeoff, 
                         self.land, 
                         self.ascend,
