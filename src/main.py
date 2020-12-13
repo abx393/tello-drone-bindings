@@ -1,4 +1,8 @@
 from tello_controller import TelloController
 
-controller = TelloController()
-controller.start()
+def main():
+    controller = TelloController()
+    controller.start()
+
+if __name__ == "__main__":
+    main()
