@@ -1,5 +1,5 @@
 # tello-drone-bindings
-Python bindings to interact with the DJI Ryze Tello Drone.
+Python 3 bindings to interact with the DJI Ryze Tello Drone.
 
 ## Dependencies
 * Python 3.x.x
