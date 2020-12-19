@@ -17,7 +17,6 @@ import cv2
 
 from key_bindings import check_key_press
 
-# TODO: improve video quality
 # TODO: test responsiveness of key held down
 
 class TelloController:
@@ -68,12 +67,18 @@ class TelloController:
         return frames_decoded
 
     def receive_video_socket(self):
+        packet_data = b''
         while True:
             try:
                 res_string, ip = self.video_socket.recvfrom(4096)
-                for frame in self.h264_decode(res_string):
-                    cv2.imshow("Tello POV", frame)
-                    cv2.waitKey(5)
+                packet_data += res_string
+
+                # if end of current frame is reached
+                if len(res_string) != 1460:
+                    for frame in self.h264_decode(packet_data):
+                        cv2.imshow("Tello POV", frame)
+                        cv2.waitKey(25)
+                    packet_data = b''
 
             except KeyboardInterrupt:
                 cv2.destroyAllWindows()
