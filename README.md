@@ -12,8 +12,7 @@ Python 3 bindings to interact with the DJI Ryze Tello Drone.
 git clone https://www.github.com/abx393/tello-drone-bindings.git
 ```
 
-2. To install all dependencies except `h264decoder`, change working directory
-   and run the following:
+2. To install all dependencies except `h264decoder`, run the following:
 
 ```
 cd ~/tello-drone-bindings
