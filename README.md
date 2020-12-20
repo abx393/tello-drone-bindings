@@ -16,7 +16,7 @@ git clone https://www.github.com/abx393/tello-drone-bindings.git
 
 ```
 cd ~/tello-drone-bindings
-python -m pip install -r requirements.txt.
+python -m pip install -r requirements.txt
 ```
 
 3. The h264decoder library requires the installation of some sub-dependencies.
