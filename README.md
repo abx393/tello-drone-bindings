@@ -9,10 +9,12 @@ Python 3 bindings to interact with the DJI Ryze Tello Drone.
 ## Instructions
 1. Open a terminal and clone the repository locally.
   `git clone https://www.github.com/abx393/tello-drone-bindings.git`.
-2. Change your working directory to the src directory of the repository: cd
-   `~/tello-drone-bindings/src`.
-3. **Windows**: Run `py main.py`.  
-   **Linux**: Run `python main.py`.
+2. To install all dependencies except `h264decoder`, run `py -m pip install
+   -r requirements.txt` or `python -m pip install -r requirements.txt` 
+3. The h264decoder library requires the installation of some sub-dependencies.
+   See detailed instructions [here](https://github.com/DaWelter/h264decoder).
+2. Change your working directory to the src directory of the repository: `cd ~/tello-drone-bindings/src`.
+3. Run `py main.py` or `python main.py`.
 
 ## Features
 * Pilot drone with PC using customizable keyboard shortcuts (no joystick or controller necessary)
