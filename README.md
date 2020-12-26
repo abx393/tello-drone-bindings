@@ -21,7 +21,7 @@ cd ~/tello-drone-bindings
 python -m pip install -r requirements.txt
 ```
 
-3. The h264decoder library requires the installation of some sub-dependencies.
+3. The h264decoder library might require the installation of some sub-dependencies.
    See detailed instructions [here](https://github.com/DaWelter/h264decoder).
 4. Change your working directory to the src directory of the repository: 
 ```
