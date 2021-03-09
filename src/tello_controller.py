@@ -19,13 +19,15 @@ from key_bindings import check_key_press
 
 # TODO: test responsiveness of key held down
 
-class TelloController:
 
-    def __init__(self, 
-            local_udp_port=3000, 
-            local_video_udp_port=11111,
-            tello_ip="192.168.10.1",
-            tello_command_udp_port=8889):
+class TelloController:
+    def __init__(
+        self,
+        local_udp_port=3000,
+        local_video_udp_port=11111,
+        tello_ip="192.168.10.1",
+        tello_command_udp_port=8889,
+    ):
 
         self.local_udp_port = local_udp_port
         self.local_video_udp_port = local_video_udp_port
@@ -60,14 +62,14 @@ class TelloController:
             (frame, width, height, line_size) = frame_data
             if frame is not None:
                 frame = np.fromstring(frame, dtype=np.ubyte, count=len(frame), sep="")
-                frame = (frame.reshape((height, line_size // 3, 3)))
+                frame = frame.reshape((height, line_size // 3, 3))
                 frame = frame[:, :width, :]
                 frames_decoded.append(frame)
 
         return frames_decoded
 
     def receive_video_socket(self):
-        packet_data = b''
+        packet_data = b""
         while True:
             try:
                 res_string, ip = self.video_socket.recvfrom(4096)
@@ -78,7 +80,7 @@ class TelloController:
                     for frame in self.h264_decode(packet_data):
                         cv2.imshow("Tello POV", frame)
                         cv2.waitKey(25)
-                    packet_data = b''
+                    packet_data = b""
 
             except KeyboardInterrupt:
                 cv2.destroyAllWindows()
@@ -89,13 +91,16 @@ class TelloController:
                 break
 
     def send(self, message):
-        self.command_socket.sendto(message.encode("UTF-8"),
-                                  (self.tello_ip, self.tello_command_udp_port))
-    
+        self.command_socket.sendto(
+            message.encode("UTF-8"), (self.tello_ip, self.tello_command_udp_port)
+        )
+
     def command(self):
         if not self.listening:
-            warnings.warn("Must activate receiver thread (ie., controller.start()) " +
-                                "before activating 'command' mode.")
+            warnings.warn(
+                "Must activate receiver thread (ie., controller.start()) "
+                + "before activating 'command' mode."
+            )
         print("command ", end="")
         self.send("command")
         self.mode = "command"
@@ -161,7 +166,9 @@ class TelloController:
         print("Listening...")
         self.command()
         self.streamon()
-        self.receive_command_thread = threading.Thread(target=self.receive_command_socket)
+        self.receive_command_thread = threading.Thread(
+            target=self.receive_command_socket
+        )
         self.receive_command_thread.start()
 
         self.receive_video_thread = threading.Thread(target=self.receive_video_socket)
@@ -170,17 +177,18 @@ class TelloController:
         while True:
             try:
                 check_key_press(
-                        self.takeoff, 
-                        self.land, 
-                        self.ascend,
-                        self.descend,
-                        self.yaw_right,
-                        self.yaw_left,
-                        self.roll_right,
-                        self.roll_left,
-                        self.pitch_forward,
-                        self.pitch_backward,
-                        self.flip)
+                    self.takeoff,
+                    self.land,
+                    self.ascend,
+                    self.descend,
+                    self.yaw_right,
+                    self.yaw_left,
+                    self.roll_right,
+                    self.roll_left,
+                    self.pitch_forward,
+                    self.pitch_backward,
+                    self.flip,
+                )
             except KeyboardInterrupt:
                 print("Exiting...")
                 self.video_socket.close()

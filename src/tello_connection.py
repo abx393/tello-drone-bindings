@@ -12,8 +12,10 @@ PORT = 7100
 LOCAL_ADDRESS = (HOST, PORT)
 TELLO_ADDRESS = ("192.168.10.1", 8889)
 
+
 def recv():
     pass
+
 
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -44,6 +46,7 @@ def main():
             print("\n . . . \n")
             sock.close()
             break
+
 
 if __name__ == "__main__":
     main()

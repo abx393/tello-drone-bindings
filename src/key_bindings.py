@@ -18,17 +18,20 @@ HORIZONTAL_TRANSLATION_MAGNITUDE = 160
 ROTATION_MAGNITUDE = 40
 VERTICAL_TRANSLATION_MAGNITUDE = 100
 
-def check_key_press(takeoff, 
-                    land, 
-                    ascend,
-                    descend,
-                    yaw_right,
-                    yaw_left,
-                    roll_right,
-                    roll_left,
-                    pitch_forward,
-                    pitch_backward,
-                    flip):
+
+def check_key_press(
+    takeoff,
+    land,
+    ascend,
+    descend,
+    yaw_right,
+    yaw_left,
+    roll_right,
+    roll_left,
+    pitch_forward,
+    pitch_backward,
+    flip,
+):
 
     # Throttle controls
     if keyboard.is_pressed(TAKEOFF_KEY):
@@ -38,7 +41,7 @@ def check_key_press(takeoff,
     if keyboard.is_pressed(ASCEND_KEY):
         ascend(VERTICAL_TRANSLATION_MAGNITUDE)
     if keyboard.is_pressed(DESCEND_KEY):
-        descend(VERTICAL_TRANSLATION_MAGNITUDE) 
+        descend(VERTICAL_TRANSLATION_MAGNITUDE)
 
     # Yaw controls
     if keyboard.is_pressed(ROTATE_CW_KEY):
