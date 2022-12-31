@@ -2,7 +2,8 @@
 Python 3 bindings to interact with the [DJI Ryze Tello
 Drone](https://www.ryzerobotics.com/tello).
 
-![](assets/drone.gif)
+![](assets/drone_animation.gif)
+![](assets/keyboard_animation.gif)
 
 ## Dependencies
 * Python 3.x.x
