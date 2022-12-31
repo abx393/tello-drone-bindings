@@ -1,5 +1,5 @@
 # tello-drone-bindings
-Python 3 bindings to interact with the ![DJI Ryze Tello
+Python 3 bindings to interact with the [DJI Ryze Tello
 Drone](https://www.ryzerobotics.com/tello).
 
 ![](assets/drone.gif)
