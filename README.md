@@ -5,6 +5,22 @@ Drone](https://www.ryzerobotics.com/tello).
 <img src="assets/drone_animation.gif" height="400 px"></img>
 ![](assets/keyboard_animation.gif)
 
+### Current Key Bindings
+| Key Binding | Control | Result |
+| :---:   | :----:    | :----: |
+|  `Enter` | take off | take off |
+| `space` | land    |  land |
+|  `w` | increase throttle | ascend |
+| `s` | decrease throttle | descend |
+| `a` | yaw left | rotate counter-clockwise |
+| `d` | yaw right | rotate clockwise |
+| `<left>` | roll left | move left |
+| `<right>` | roll right | move right |
+| `<up>` | pitch forward | move forward |
+| `<down>` | pitch backward | move backward |
+| `f` | flip | 360&deg; flip |
+
+
 ## Dependencies
 * Python 3.x.x
 * opencv-python
@@ -42,21 +58,6 @@ python main.py
 ## Features
 * Pilot drone with PC using customizable keyboard shortcuts (no joystick or controller necessary)
 * View video stream of drone POV from PC in realtime.
-
-### Current Key Bindings
-| Key Binding | Control | Result |
-| :---:   | :----:    | :----: |
-|  `Enter` | take off | take off |
-| `space` | land    |  land |
-|  `w` | increase throttle | ascend |
-| `s` | decrease throttle | descend |
-| `a` | yaw left | rotate counter-clockwise |
-| `d` | yaw right | rotate clockwise |
-| `<left>` | roll left | move left |
-| `<right>` | roll right | move right |
-| `<up>` | pitch forward | move forward |
-| `<down>` | pitch backward | move backward |
-| `f` | flip | 360&deg; flip |
 
 ## References
 * [https://github.com/dji-sdk/Tello-Python](https://github.com/dji-sdk/Tello-Python)
